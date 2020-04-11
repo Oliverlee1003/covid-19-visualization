@@ -72,7 +72,7 @@ console.log('inside');
             .attr("x", 725)
             .attr("y", function(d,i){ return 430 + i*(25)})
             .style("fill", 'black')
-            .style('font-size', '12px')
+            .style('font-size', '10px')
             .text(function(d){ return d})
             .attr("text-anchor", "left")
             .style("alignment-baseline", "middle");
@@ -221,7 +221,6 @@ console.log('inside');
             .style('stroke', 'black')
             .style("opacity", "0.7")
             .style('fill',function(d) {
-                //TODO: maybe add color to represent the number of each country in the selected continent
                 if (d.data.continents === 'Asia') {
                     return '#ff4d4d';
                 }
@@ -265,7 +264,6 @@ console.log('inside');
             .attr('x', d=> d.x0+5)
             .attr('y', d=> d.y0+15)
             .text(vis.selectContinent === 'worldwise' ? d=>d.data.continents : function(d, i) {
-              //  console.log(i, d.data.country);
               let width = d.x1 - d.x0;
                 if (width >= 50) {
                     return d.data.country;

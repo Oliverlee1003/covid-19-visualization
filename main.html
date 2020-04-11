@@ -12,16 +12,15 @@
     </ul>
 
     <div class="boxed">
-    <!----   <div id ="lastDay" class="row" style="text-align: center"> situation up to Mar 19</div> -->
         <div class="row">
             <div class="column" >
- <!--           hard coded for now-->
+ <!--           hard coded-->
             <h2>Total Confirmed:</h2>
-            <p id="totalConfirmed">1511104</p>
+            <p id="totalConfirmed" style="color: sienna;">1511104</p>
             </div>
             <div class="column" >
                 <h2>Total Death:</h2>
-                <p id="totalDeath" style="color: sienna;">88338</p>
+                <p id="totalDeath" style="color: rgb(31, 100, 204);">88338</p>
             </div>
             <div class="column" >
                 <h2>Total Recovered:</h2>
@@ -29,15 +28,6 @@
             </div>
         </div>
     </div>
-
-<!--    <div class="dateSlider">-->
-<!--        <label for="date-slider">Date</label>-->
-<!--        <input type="range" id="date-slider" name="date-slider" value="58" min="0" max="77" step="1" style="width: 80%" >-->
-<!--        &lt;!&ndash;            max is a variable&ndash;&gt;-->
-<!--        <span id="date-selection">2020-03-19</span>-->
-<!--        &lt;!&ndash;           max is a variable&ndash;&gt;-->
-<!--        <button id="play">Play</button>-->
-<!--    </div>-->
 
 <div id="slider-dom">
     <button id="play-button">Play</button>
@@ -83,47 +73,15 @@
                 </div>
             </div>
         </div>
-  
-
    
     <div>
-        <p style="padding-left: 50px;">TreeMap (Please selection a continent from the selection bar to see the distribution cross the continents)</p>
+        <p style="padding-left: 50px;">TreeMap (Please select a continent from the selection bar to see the distribution cross the continents)
+            <span style="padding-left: 200px;"> Line Chart(Please hover to see detail numbers)</span></p>
+
         <svg width = 55% height = 700 id="tree"></svg>
         <svg width = 45% height = 730 id="line"></svg>
     </div>
-
-
-
-
-    <!-----
-            <div class="graphbox">
-        <div class="row">
-            <div class="parent">
-                <div class="child float-left-child">
-
-                </div>
-          
-                <div class="child float-left-child">
-    
-    -->
-
-    
-      
-
-        <!---
-                   </div>
-            </div>
-
-        </div>
-       
-    </div>
-        
-        -->
-     
-    
-    <!--/div-->
-     
-   
+  
     
      <!-- Global tooltip container that we update, position, and display when the user hovers over a mark -->
      <div id="tooltip"></div>

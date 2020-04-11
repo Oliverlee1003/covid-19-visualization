@@ -15,7 +15,7 @@ class LineChart {
 
     initVis() {
         let vis = this;
-
+        //init the visualization
         vis.config.lineChartData.forEach(d => {
             d.date = new Date(d.date);
             d.confirmed = parseInt(d.confirmed);
@@ -23,9 +23,7 @@ class LineChart {
             d.recovered = parseInt(d.recovered);
         });
         vis.svg = d3.select(vis.config.parentElement).append('svg');
-        console.log(vis.config.lineChartData);
         vis.title = 'COVID-19 Cases';
-
 
         vis.margin = {
             top: 50,
@@ -36,14 +34,20 @@ class LineChart {
             vis.width = 700 - vis.margin.left - vis.margin.right,
             vis.height = 800 - vis.margin.top - vis.margin.bottom;
 
-
+        //x, y, color scale set up
         vis.x = d3.time.scale()
-            .range([0, vis.width]);
+            .range([0, vis.width])
+            .domain(d3.extent(vis.config.lineChartData, function (d) {
+                return d.date;
+            }));
 
         vis.y = d3.scaleLinear()
-            .range([vis.height, 0]);
+            .range([vis.height, 0]);// set domain at line 89
 
-        vis.color = d3.scale.category10();
+        vis.color = d3.scale.category10()
+            .domain(d3.keys(vis.config.lineChartData[0]).filter(function (key) {
+                return key !== "date";
+            }));
 
         const xAxis = d3.axisBottom(vis.x)
             .tickSize(-vis.height)
@@ -62,19 +66,13 @@ class LineChart {
                 return vis.y(d.cases);
             });
 
-
         vis.svg
             .attr("width", vis.width + vis.margin.left + vis.margin.right)
             .attr("height", vis.height + vis.margin.top + vis.margin.bottom)
             .append("g")
             .attr("transform", "translate(" + vis.margin.left + "," + vis.margin.top + ")");
 
-
-        vis.color.domain(d3.keys(vis.config.lineChartData[0]).filter(function (key) {
-            return key !== "date";
-        }));
-
-
+        //group data by case
         vis.types = vis.color.domain().map(function (name) {
             return {
                 name: name,
@@ -86,11 +84,6 @@ class LineChart {
                 })
             };
         });
-
-
-        vis.x.domain(d3.extent(vis.config.lineChartData, function (d) {
-            return d.date;
-        }));
 
         vis.y.domain([
             d3.min(vis.types, function (c) {
@@ -105,6 +98,7 @@ class LineChart {
             })
         ]);
 
+        // add legends to the chart
         vis.legend = vis.svg.selectAll("legend")
             .data(vis.types)
             .enter()
@@ -120,7 +114,6 @@ class LineChart {
             .attr('width', 10)
             .attr('height', 10)
             .style('fill', function (d) {
-                console.log(d);
                 return vis.color(d.name);
             });
 
@@ -134,11 +127,10 @@ class LineChart {
                 return d.name;
             })
             .style('fill', function (d) {
-                console.log(d);
                 return vis.color(d.name);
             });
 
-
+        //append axises
         vis.svg.append("g")
             .attr("class", "x axis")
             .attr("transform", "translate(80,700)")
@@ -157,6 +149,7 @@ class LineChart {
         vis.render();
     }
     update(){
+        //play button
         let vis = this;
         vis.city.select('path')
             .remove();
@@ -164,6 +157,7 @@ class LineChart {
     }
     render(){
         let vis = this;
+        //render line
          vis.city = vis.svg.selectAll(".city")
             .data(vis.types)
             .enter().append("g")
@@ -181,7 +175,7 @@ class LineChart {
             });
         let totalLength = vis.city.select("path").node().getTotalLength();
         let transitionPath = d3.transition()
-            .duration(8000);
+            .duration(12000);
         vis.city.select("path")
             .attr("stroke-dashoffset", totalLength)
             .attr("stroke-dasharray", totalLength)
@@ -201,6 +195,7 @@ class LineChart {
             .attr("x", 3)
             .attr("dy", ".35em");
 
+        //hover event for showing detail number of cases
         var mouseG = vis.svg.append("g")
             .attr("class", "mouse-over-effects")
             .attr('transform',"translate(80,50)");
@@ -301,10 +296,6 @@ class LineChart {
                         return "translate(" + mouse[0] + "," + pos.y +")";
                     });
 
-
             });
-
     }
-
-
 }
