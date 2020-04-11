@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>COVID19 Visualization Project</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <ul class="title-line">
+        <li>COVID-19 Global Information</li>
+        <li class="teamname">TEAM Nameless</li>
+        <div id ="lastDay" style="font-size: small;">January 22, 2020 - April 8, 2020 </div>
+    </ul>
+
+    <div class="boxed">
+    <!----   <div id ="lastDay" class="row" style="text-align: center"> situation up to Mar 19</div> -->
+        <div class="row">
+            <div class="column" >
+ <!--           hard coded for now-->
+            <h2>Total Confirmed:</h2>
+            <p id="totalConfirmed">1511104</p>
+            </div>
+            <div class="column" >
+                <h2>Total Death:</h2>
+                <p id="totalDeath" style="color: sienna;">88338</p>
+            </div>
+            <div class="column" >
+                <h2>Total Recovered:</h2>
+                <p id="totalRecovered" style="color: seagreen;">328661</p>
+            </div>
+        </div>
+    </div>
+
+<!--    <div class="dateSlider">-->
+<!--        <label for="date-slider">Date</label>-->
+<!--        <input type="range" id="date-slider" name="date-slider" value="58" min="0" max="77" step="1" style="width: 80%" >-->
+<!--        &lt;!&ndash;            max is a variable&ndash;&gt;-->
+<!--        <span id="date-selection">2020-03-19</span>-->
+<!--        &lt;!&ndash;           max is a variable&ndash;&gt;-->
+<!--        <button id="play">Play</button>-->
+<!--    </div>-->
+
+<div id="slider-dom">
+    <button id="play-button">Play</button>
+</div>
+<div class="graphbox">
+    <ul class="widget">
+        <li >
+            <label for="types" style="margin-left: 5px;">Choose a type of number to visualize:</label>
+            <select id="types">
+                <option value="confirm">confirmed case number</option>
+                <option value="death" >death number</option>
+                <option value="recovery" >recovery case number</option>
+            </select>
+        </li>
+
+        <li>
+            <label for="whichContinent" style="margin-left: 50px;">Choose a continent to visualize the number of cases:</label>
+            <select id="whichContinent">
+                <option value="worldwise">worldwise</option>
+                <option value="Asia">Asia</option>
+                <option value="Australia">Australia</option>
+                <option value="Europe">Europe</option>
+                <option value="Africa">Africa</option>
+                <option value="South America">South America</option>
+                <option value="North America">North America</option>
+            </select>
+        </li>
+    </ul>
+</div>
+
+        <div class="row">
+            <div class='parent'>
+                <div class='child float-left-child'>
+                    <svg width = 600 height = 400 id="map"></svg>
+                    <div style="padding-left: 200px;">World Map
+                        <button id = "animation">play for innovative visualization</button>
+                    </div>
+
+                </div>
+                <div class='child float-left-child'>
+                    <svg width = 600 height = 400 id="countryMap"></svg>
+                    <p style="padding-left: 200px;">Country Map (Click a country from world map) </p>
+                </div>
+            </div>
+        </div>
+  
+
+   
+    <div>
+        <p style="padding-left: 50px;">TreeMap (Please selection a continent from the selection bar to see the distribution cross the continents)</p>
+        <svg width = 55% height = 700 id="tree"></svg>
+        <svg width = 45% height = 730 id="line"></svg>
+    </div>
+
+
+
+
+    <!-----
+            <div class="graphbox">
+        <div class="row">
+            <div class="parent">
+                <div class="child float-left-child">
+
+                </div>
+          
+                <div class="child float-left-child">
+    
+    -->
+
+    
+      
+
+        <!---
+                   </div>
+            </div>
+
+        </div>
+       
+    </div>
+        
+        -->
+     
+    
+    <!--/div-->
+     
+   
+    
+     <!-- Global tooltip container that we update, position, and display when the user hovers over a mark -->
+     <div id="tooltip"></div>
+   
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://d3js.org/topojson.v3.min.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/worldMap.js"></script>
+    <script src="js/treeMap.js"></script>
+    <script src="js/lineChart.js"></script>
+    <script src="js/d3v3.js"></script>
+
+</body>
+</html>
