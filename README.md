@@ -1,3 +1,6 @@
+Deployed on https://covid-19-vis.netlify.com/
+If line chart and treemap are not in the same line, Please zoom out a little bit (command ➕ - ) or increase the width of browser.
+
 # project_nameless
 
 ## Scalability
